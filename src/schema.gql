@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type FilmsModel {
+  title: String!
+  episode_id: Float!
+  opening_crawl: String!
+  director: String!
+  producer: String!
+  url: String!
+}
+
+type HomeWorldModel {
+  name: String
+  rotation_period: String
+  orbital_period: String
+  diameter: String
+  climate: String
+  gravity: String
+  terrain: String
+  surface_water: String
+  population: String
+  films: [FilmsModel!]
+  created: DateTime
+  edited: DateTime
+  url: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PeopleModel {
+  name: String
+  height: String!
+  mass: String!
+  hair_color: String!
+  skin_color: String!
+  eye_color: String!
+  birth_year: String!
+  gender: String!
+  homeworld: HomeWorldModel
+  films: FilmsModel
+  created: DateTime!
+  edited: DateTime!
+  url: String!
+}
+
+type TokenModel {
+  name: String
+  token: String!
+}
+
+type Query {
+  people(page_num: Float!, token: String!): [PeopleModel!]
+  person(name: String!, token: String!): [PeopleModel!]
+}
+
+type Mutation {
+  getToken(user: String!): TokenModel!
+}
